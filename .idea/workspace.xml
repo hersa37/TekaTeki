@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/Larik.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/MainW06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/out/artifacts/SDL_W01_jar/SDL_W01.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/out/artifacts/SDL_W01_jar/SDL_W01.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/Larik.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/Main2.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2FeFk7sOct7aSknv5wh0RdwOnIr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/echa/College/Semester 3/StrukturDataLinear/Week01/SDL_W01",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="18" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TekaTeki1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="" />
+      <created>1664844782604</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664844782604</updated>
+      <workItem from="1664844784125" duration="1269000" />
+      <workItem from="1664846090164" duration="302000" />
+      <workItem from="1664865610678" duration="307000" />
+      <workItem from="1664866212252" duration="711000" />
+      <workItem from="1664866933835" duration="337000" />
+      <workItem from="1664867427248" duration="184000" />
+      <workItem from="1664867649850" duration="148000" />
+      <workItem from="1664867817303" duration="114000" />
+      <workItem from="1664867942671" duration="186000" />
+      <workItem from="1664868182736" duration="1026000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
