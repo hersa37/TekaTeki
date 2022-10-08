@@ -17,6 +17,11 @@ public class NumberPuzzle {
         generateRandomBoard();
     }
 
+    public NumberPuzzle(int[][] numberBoard) {
+        this.numberBoard = numberBoard;
+        findZero();
+    }
+
     public NumberPuzzle(NumberPuzzle board) {
         numberBoard = copyArray(board.numberBoard);
         zeroRow = board.zeroRow;
@@ -79,7 +84,7 @@ public class NumberPuzzle {
     }
 
     public void down() {
-        if(zeroRow < numberBoard.length -1) {
+        if(zeroRow < numberBoard[0].length -1) {
             numberBoard[zeroRow][zeroColumn] = numberBoard[zeroRow + 1][zeroColumn];
             numberBoard[zeroRow + 1][zeroColumn] = 0;
             zeroRow++;
@@ -94,13 +99,25 @@ public class NumberPuzzle {
         return copy;
     }
 
+    public void findZero() {
+        for(int i = 0; i < numberBoard.length; i ++) {
+            for(int j = 0; j < numberBoard[0].length; j++) {
+                if(numberBoard[i][j] == 0) {
+                    zeroRow = i;
+                    zeroColumn = j;
+                    return;
+                }
+            }
+        }
+    }
+
     public void printBoard() {
         String print = "";
-        for(int i = 0; i < numberBoard.length; i++) {
-            for(int j = 0; j < numberBoard[i].length; j++) {
-                print += numberBoard[i][j] + " ";
+        for (int[] row : numberBoard) {
+            for (int column : row) {
+                print += column + " ";
             }
-            print +="\n";
+            print += "\n";
         }
         System.out.println(print);
     }

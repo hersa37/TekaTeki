@@ -1,0 +1,123 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main2 {
+	static List<NumberPuzzle> solutionNodes;    //Daftar rute node solusi
+	static List<NumberPuzzle> pendingNodes;     //Daftar node yang belum diproses
+	static List<NumberPuzzle> deadEndNodes;     //Daftar node buntu
+	static List<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
+	static NumberPuzzle currentState;           //Node yang sedang diproses
+	static int[][] boardSolution = {            //Array goal node
+			{0, 1},
+			{2, 3},
+	};
+	static NumberPuzzle solutionState;          //Objek goal node
+
+	public static void main(String[] args) {
+
+		solutionNodes = new ArrayList<>();
+		pendingNodes = new ArrayList<>();
+		deadEndNodes = new ArrayList<>();
+		childNodes = new ArrayList<>();
+
+		//Buat objek goal
+		solutionState = new NumberPuzzle(boardSolution, 0, 0);
+
+		//Array awal
+		int[][] startBoard = {
+				{1, 3},
+				{2, 0},
+
+		};
+		//Objek board awal
+		NumberPuzzle startNode = new NumberPuzzle(startBoard, 1, 1);
+
+		//State node yang diproses = board awal
+		currentState = startNode;
+		solutionNodes.add(currentState);
+		pendingNodes.add(currentState);
+
+		//Panggil backtrack
+		backtrack();
+
+		//Cetak rute solusi
+		for (NumberPuzzle solutions : solutionNodes) {
+			solutions.printBoard();
+		}
+	}
+
+	public static void backtrack() {
+
+		while (!pendingNodes.isEmpty()) {                    //Lakukan terus selama masih ada node yang bisa diproses
+			if (isEqual(currentState, solutionState)) { //Cek apakah node sekarang = node goal
+				System.out.println("Solution found");
+				return; //Selesai jika benar
+			}
+			childNodes.clear();     //Kosongkan daftar anak
+			createChildNodes();     //Buat anak baru
+			int newChildNodes = 4;  //Counter jumlah anak baru
+			for (NumberPuzzle childNode : childNodes) {
+				if (!isNewNode(childNode)) { //Cek apakah anak sudah ada di daftar lain atau belum
+					newChildNodes--; //Kurangi counter anak baru
+				} else {
+					break;  //Keluar dari loop karena masih ada anak baru
+				}
+			}
+			if (newChildNodes == 0) {   //Kalau tidak ada anak baru
+				// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
+				while (!solutionNodes.isEmpty() && isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
+					deadEndNodes.add(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
+					pendingNodes.remove(pendingNodes.size() - 1); //Hapus node terakhir dari daftar node diproses
+					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
+					currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
+				}
+				solutionNodes.add(currentState); //Tambah node saat ini ke daftar rute solusi
+			} else { //Kalau masih ada anak baru
+				for (NumberPuzzle childNode : childNodes) { //Tambahkan anak yang tidak duplikat ke daftar node yang belum diproses
+					if (isNewNode(childNode)) {
+						pendingNodes.add(childNode);
+					}
+				}
+				currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
+				solutionNodes.add(currentState); //Tambah node saat ini ke darfat rute solusi
+			}
+
+		}
+	}
+
+	public static void createChildNodes() {
+		NumberPuzzle down = new NumberPuzzle(currentState);
+		down.down();
+		NumberPuzzle right = new NumberPuzzle(currentState);
+		right.right();
+		NumberPuzzle up = new NumberPuzzle(currentState);
+		up.up();
+		NumberPuzzle left = new NumberPuzzle(currentState);
+		left.left();
+		childNodes.add(down);
+		childNodes.add(right);
+		childNodes.add(up);
+		childNodes.add(left);
+	}
+
+	public static boolean isEqual(NumberPuzzle nodeA, NumberPuzzle nodeB) {
+		return Arrays.deepEquals(nodeA.getNumberBoard(), nodeB.getNumberBoard());
+	}
+
+	public static boolean isNewNode(NumberPuzzle node) {
+
+		for (NumberPuzzle pending : pendingNodes) {
+			if (isEqual(node, pending)) {
+				return false;
+			}
+		}
+
+		for (NumberPuzzle deadEnd : deadEndNodes) {
+			if (isEqual(node, deadEnd)) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
