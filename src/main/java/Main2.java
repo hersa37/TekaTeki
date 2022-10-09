@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +11,9 @@ public class Main2 {
 	static List<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
 	static NumberPuzzle currentState;           //Node yang sedang diproses
 	static int[][] boardSolution = {            //Array goal node
-			{0, 1},
-			{2, 3},
+			{1,2,3},
+			{8,0,4},
+			{7,6,5}
 	};
 	static NumberPuzzle solutionState;          //Objek goal node
 
@@ -22,16 +25,16 @@ public class Main2 {
 		childNodes = new ArrayList<>();
 
 		//Buat objek goal
-		solutionState = new NumberPuzzle(boardSolution, 0, 0);
+		solutionState = new NumberPuzzle(boardSolution);
 
 		//Array awal
 		int[][] startBoard = {
-				{1, 3},
-				{2, 0},
-
+				{1,2,3},
+				{8,6,4},
+				{0,7,5}
 		};
 		//Objek board awal
-		NumberPuzzle startNode = new NumberPuzzle(startBoard, 1, 1);
+		NumberPuzzle startNode = new NumberPuzzle(startBoard);
 
 		//State node yang diproses = board awal
 		currentState = startNode;
@@ -42,9 +45,15 @@ public class Main2 {
 		backtrack();
 
 		//Cetak rute solusi
+		StringBuilder output = new StringBuilder();
 		for (NumberPuzzle solutions : solutionNodes) {
 			solutions.printBoard();
+			output.append(solutions.toString() + "\n");
 		}
+		toFile("output.txt", output.toString());
+
+
+
 	}
 
 	public static void backtrack() {
@@ -66,7 +75,7 @@ public class Main2 {
 			}
 			if (newChildNodes == 0) {   //Kalau tidak ada anak baru
 				// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
-				while (!solutionNodes.isEmpty() && isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
+				while (solutionNodes.size() > 1 && isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
 					deadEndNodes.add(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
 					pendingNodes.remove(pendingNodes.size() - 1); //Hapus node terakhir dari daftar node diproses
 					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
@@ -101,6 +110,7 @@ public class Main2 {
 		childNodes.add(left);
 	}
 
+
 	public static boolean isEqual(NumberPuzzle nodeA, NumberPuzzle nodeB) {
 		return Arrays.deepEquals(nodeA.getNumberBoard(), nodeB.getNumberBoard());
 	}
@@ -120,4 +130,17 @@ public class Main2 {
 		}
 		return true;
 	}
+
+	public static void toFile(String name, String content) {
+		try{
+			FileWriter writer = new FileWriter(name);
+			writer.write(content);
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+	}
+
+
 }

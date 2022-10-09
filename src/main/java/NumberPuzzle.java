@@ -5,6 +5,7 @@ public class NumberPuzzle {
     private int[][] numberBoard;
     private int zeroRow;
     private int zeroColumn;
+    private int score;
 
     public NumberPuzzle(int[][] numberBoard, int zeroRow, int zeroColumn) {
         this.numberBoard = numberBoard;
@@ -84,7 +85,7 @@ public class NumberPuzzle {
     }
 
     public void down() {
-        if(zeroRow < numberBoard[0].length -1) {
+        if(zeroRow < numberBoard.length -1) {
             numberBoard[zeroRow][zeroColumn] = numberBoard[zeroRow + 1][zeroColumn];
             numberBoard[zeroRow + 1][zeroColumn] = 0;
             zeroRow++;
@@ -122,7 +123,31 @@ public class NumberPuzzle {
         System.out.println(print);
     }
 
+    public String toString() {
+        StringBuilder print = new StringBuilder();
+        for (int[] row : numberBoard) {
+            for (int column : row) {
+                print.append(column).append(" ");
+            }
+            print.append("\n");
+        }
+        return print.toString();
+    }
 
+    public void score(NumberPuzzle board){
+        score = 0;
+        for(int i = 0; i < numberBoard.length; i++) {
+            for(int j = 0; j < numberBoard[i].length;i++) {
+                if(numberBoard[i][j] != board.numberBoard[i][j]) {
+                    score++;
+                }
+            }
+        }
+    }
+
+    public int getScore(){
+        return score;
+    }
 
 
 

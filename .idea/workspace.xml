@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="checkpoint before I give up">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
+    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/artifacts/SDL_W01_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/MainW06.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/MainW06.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +53,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/echa/College/Semester 3/StrukturDataLinear/Week01/SDL_W01&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/echa/College/Semester 3/StrukturDataLinear/Week01/SDL_W01",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main2">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="18" />
@@ -72,6 +84,13 @@
     </configuration>
     <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main2" />
+      <module name="TekaTeki1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main3" />
       <module name="TekaTeki1" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -92,6 +111,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Main3" />
       <item itemvalue="Application.Main2" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Application.Main" />
@@ -100,6 +120,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main2" />
+        <item itemvalue="Application.Main3" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.MainW06" />
@@ -132,7 +153,13 @@
       <workItem from="1665101174016" duration="4065000" />
       <workItem from="1665106479014" duration="4965000" />
       <workItem from="1665123707384" duration="10228000" />
-      <workItem from="1665186491360" duration="7418000" />
+      <workItem from="1665186491360" duration="7653000" />
+      <workItem from="1665194520034" duration="1354000" />
+      <workItem from="1665206223011" duration="1206000" />
+      <workItem from="1665214011606" duration="698000" />
+      <workItem from="1665229340533" duration="2100000" />
+      <workItem from="1665275163938" duration="3994000" />
+      <workItem from="1665318280221" duration="3475000" />
     </task>
     <task id="LOCAL-00001" summary="idkwhati'sinthis">
       <created>1664869358607</created>
@@ -148,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665143011230</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long">
+      <created>1665194260051</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665194260051</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +202,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idkwhati'sinthis" />
     <MESSAGE value="checkpoint before I give up" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkpoint before I give up" />
+    <MESSAGE value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -190,26 +225,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
           <line>64</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
