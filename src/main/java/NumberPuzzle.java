@@ -27,6 +27,7 @@ public class NumberPuzzle {
         numberBoard = copyArray(board.numberBoard);
         zeroRow = board.zeroRow;
         zeroColumn = board.zeroColumn;
+        score = board.score;
     }
     public int[][] getNumberBoard() {
         return numberBoard;
@@ -137,7 +138,7 @@ public class NumberPuzzle {
     public void score(NumberPuzzle board){
         score = 0;
         for(int i = 0; i < numberBoard.length; i++) {
-            for(int j = 0; j < numberBoard[i].length;i++) {
+            for(int j = 0; j < numberBoard[i].length;j++) {
                 if(numberBoard[i][j] != board.numberBoard[i][j]) {
                     score++;
                 }

@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long">
+    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/artifacts/SDL_W01_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/MainW06.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/MainW06.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "false",
     "last_opened_file_path": "/home/echa/College/Semester 3/StrukturDataLinear/Week01/SDL_W01",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -159,7 +154,9 @@
       <workItem from="1665214011606" duration="698000" />
       <workItem from="1665229340533" duration="2100000" />
       <workItem from="1665275163938" duration="3994000" />
-      <workItem from="1665318280221" duration="3475000" />
+      <workItem from="1665318280221" duration="6623000" />
+      <workItem from="1665361508236" duration="17000" />
+      <workItem from="1665366494042" duration="6528000" />
     </task>
     <task id="LOCAL-00001" summary="idkwhati'sinthis">
       <created>1664869358607</created>
@@ -182,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665194260051</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster">
+      <created>1665324639906</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665324639906</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +207,8 @@
     <MESSAGE value="idkwhati'sinthis" />
     <MESSAGE value="checkpoint before I give up" />
     <MESSAGE value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
+    <MESSAGE value="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster" />
+    <option name="LAST_COMMIT_MESSAGE" value="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -225,6 +230,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
           <line>64</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

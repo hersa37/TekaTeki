@@ -11,9 +11,9 @@ public class Main2 {
 	static List<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
 	static NumberPuzzle currentState;           //Node yang sedang diproses
 	static int[][] boardSolution = {            //Array goal node
-			{1,2,3},
-			{8,0,4},
-			{7,6,5}
+			{1, 2, 3},
+			{8, 0, 4},
+			{7, 6, 5}
 	};
 	static NumberPuzzle solutionState;          //Objek goal node
 
@@ -29,21 +29,24 @@ public class Main2 {
 
 		//Array awal
 		int[][] startBoard = {
-				{1,2,3},
-				{8,6,4},
-				{0,7,5}
+				{1, 2, 3},
+				{7, 8, 4},
+				{6, 5, 0}
 		};
 		//Objek board awal
 		NumberPuzzle startNode = new NumberPuzzle(startBoard);
-
+		startNode.score(solutionState);
 		//State node yang diproses = board awal
 		currentState = startNode;
 		solutionNodes.add(currentState);
 		pendingNodes.add(currentState);
 
 		//Panggil backtrack
-		backtrack();
-
+		try {
+			backtrack();
+		} catch (ArrayIndexOutOfBoundsException ar) {
+			System.out.println("No solution");
+		}
 		//Cetak rute solusi
 		StringBuilder output = new StringBuilder();
 		for (NumberPuzzle solutions : solutionNodes) {
@@ -51,7 +54,6 @@ public class Main2 {
 			output.append(solutions.toString() + "\n");
 		}
 		toFile("output.txt", output.toString());
-
 
 
 	}
@@ -64,8 +66,8 @@ public class Main2 {
 				return; //Selesai jika benar
 			}
 			childNodes.clear();     //Kosongkan daftar anak
-			createChildNodes();     //Buat anak baru
-			int newChildNodes = 4;  //Counter jumlah anak baru
+			createChildNodesScored();     //Buat anak baru
+			int newChildNodes = childNodes.size();  //Counter jumlah anak baru
 			for (NumberPuzzle childNode : childNodes) {
 				if (!isNewNode(childNode)) { //Cek apakah anak sudah ada di daftar lain atau belum
 					newChildNodes--; //Kurangi counter anak baru
@@ -81,6 +83,7 @@ public class Main2 {
 					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
 					currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
 				}
+
 				solutionNodes.add(currentState); //Tambah node saat ini ke daftar rute solusi
 			} else { //Kalau masih ada anak baru
 				for (NumberPuzzle childNode : childNodes) { //Tambahkan anak yang tidak duplikat ke daftar node yang belum diproses
@@ -110,6 +113,33 @@ public class Main2 {
 		childNodes.add(left);
 	}
 
+	public static void createChildNodesScored() {
+		NumberPuzzle down = new NumberPuzzle(currentState);
+		down.down();
+		down.score(solutionState);
+		NumberPuzzle right = new NumberPuzzle(currentState);
+		right.right();
+		right.score(solutionState);
+		NumberPuzzle up = new NumberPuzzle(currentState);
+		up.up();
+		up.score(solutionState);
+		NumberPuzzle left = new NumberPuzzle(currentState);
+		left.left();
+		left.score(solutionState);
+		if (down.getScore() <= currentState.getScore()) {
+			childNodes.add(down);
+		}
+		if (right.getScore() <= currentState.getScore()) {
+			childNodes.add(right);
+		}
+		if (up.getScore() <= currentState.getScore()) {
+			childNodes.add(up);
+		}
+		if (left.getScore() <= currentState.getScore()) {
+			childNodes.add(left);
+		}
+	}
+
 
 	public static boolean isEqual(NumberPuzzle nodeA, NumberPuzzle nodeB) {
 		return Arrays.deepEquals(nodeA.getNumberBoard(), nodeB.getNumberBoard());
@@ -132,7 +162,7 @@ public class Main2 {
 	}
 
 	public static void toFile(String name, String content) {
-		try{
+		try {
 			FileWriter writer = new FileWriter(name);
 			writer.write(content);
 			writer.close();
