@@ -1,14 +1,13 @@
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 
-public class Main2 {
-	static List<NumberPuzzle> solutionNodes;    //Daftar rute node solusi
-	static List<NumberPuzzle> pendingNodes;     //Daftar node yang belum diproses
-	static List<NumberPuzzle> deadEndNodes;     //Daftar node buntu
-	static List<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
+public class Main2LinkedList {
+	static LinkedList<NumberPuzzle> solutionNodes;    //Daftar rute node solusi
+	static LinkedList<NumberPuzzle> pendingNodes;     //Daftar node yang belum diproses
+	static LinkedList<NumberPuzzle> deadEndNodes;     //Daftar node buntu
+	static LinkedList<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
 	static NumberPuzzle currentState;           //Node yang sedang diproses
 	static int[][] boardSolution = {            //Array goal node
 			{1, 2, 3},
@@ -19,10 +18,10 @@ public class Main2 {
 
 	public static void main(String[] args) {
 
-		solutionNodes = new ArrayList<>();
-		pendingNodes = new ArrayList<>();
-		deadEndNodes = new ArrayList<>();
-		childNodes = new ArrayList<>();
+		solutionNodes = new LinkedList<>();
+		pendingNodes = new LinkedList<>();
+		deadEndNodes = new LinkedList<>();
+		childNodes = new LinkedList<>();
 
 		//Buat objek goal
 		solutionState = new NumberPuzzle(boardSolution);
@@ -38,8 +37,8 @@ public class Main2 {
 		startNode.score(solutionState);
 		//State node yang diproses = board awal
 		currentState = startNode;
-		solutionNodes.add(currentState);
-		pendingNodes.add(currentState);
+		solutionNodes.addFirst(currentState);
+		pendingNodes.addFirst(currentState);
 
 		//Panggil backtrack
 		try {
@@ -79,21 +78,21 @@ public class Main2 {
 			}
 			if (newChildNodes == 0) {   //Kalau tidak ada anak baru
 				// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
-				while (solutionNodes.size() > 1 && isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
-					deadEndNodes.add(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
-					pendingNodes.remove(pendingNodes.size() - 1); //Hapus node terakhir dari daftar node diproses
-					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
-					currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
+				while (isEqual(currentState, solutionNodes.getFirst())) {
+					deadEndNodes.addFirst(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
+					pendingNodes.removeFirst(); //Hapus node pertama di daftar node dibuka
+					solutionNodes.removeFirst(); //Hapus node pertama di daftar rute solusi
+					currentState = pendingNodes.getFirst(); //Proses node pertama dari daftar yang belum diproses
 				}
-				solutionNodes.add(currentState); //Tambah node saat ini ke daftar rute solusi
+				solutionNodes.addFirst(currentState); //Tambah node saat ini ke daftar rute solusi
 			} else { //Kalau masih ada anak baru
 				for (NumberPuzzle childNode : childNodes) { //Tambahkan anak yang tidak duplikat ke daftar node yang belum diproses
 					if (isNewNode(childNode)) {
-						pendingNodes.add(childNode);
+						pendingNodes.addFirst(childNode);
 					}
 				}
-				currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
-				solutionNodes.add(currentState); //Tambah node saat ini ke darfat rute solusi
+				currentState = pendingNodes.getFirst(); //Proses node pertama dari daftar yang belum diproses
+				solutionNodes.addFirst(currentState); //Tambah node saat ini ke darfat rute solusi
 			}
 		}
 	}
@@ -107,10 +106,10 @@ public class Main2 {
 		up.up();
 		NumberPuzzle left = new NumberPuzzle(currentState);
 		left.left();
-		childNodes.add(down);
-		childNodes.add(right);
-		childNodes.add(up);
-		childNodes.add(left);
+		childNodes.addFirst(down);
+		childNodes.addFirst(right);
+		childNodes.addFirst(up);
+		childNodes.addFirst(left);
 	}
 
 	public static void createChildNodesScored() {
@@ -127,16 +126,16 @@ public class Main2 {
 		left.left();
 		left.score(solutionState);
 		if (down.getScore() <= currentState.getScore()) {
-			childNodes.add(down);
+			childNodes.addFirst(down);
 		}
 		if (right.getScore() <= currentState.getScore()) {
-			childNodes.add(right);
+			childNodes.addFirst(right);
 		}
 		if (up.getScore() <= currentState.getScore()) {
-			childNodes.add(up);
+			childNodes.addFirst(up);
 		}
 		if (left.getScore() <= currentState.getScore()) {
-			childNodes.add(left);
+			childNodes.addFirst(left);
 		}
 	}
 
