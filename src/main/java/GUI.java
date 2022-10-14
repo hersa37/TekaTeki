@@ -3,14 +3,13 @@ import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame {
-	LinkedList<NumberPuzzle> solutionNodes;    //Daftar rute node solusi
-	LinkedList<NumberPuzzle> pendingNodes;     //Daftar node yang belum diproses
-	LinkedList<NumberPuzzle> deadEndNodes;     //Daftar node buntu
-	LinkedList<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
+	NumberBoardList solutionNodes;    //Daftar rute node solusi
+	NumberBoardList pendingNodes;     //Daftar node yang belum diproses
+	NumberBoardList deadEndNodes;     //Daftar node buntu
+	NumberBoardList childNodes;       //Daftar anak dari node yang sedang diproses
 	NumberPuzzle currentState;           //Node yang sedang diproses
 	int[][] boardSolution = {            //Array goal node
 			{1, 2, 3},
@@ -108,15 +107,11 @@ public class GUI extends JFrame {
 		tekaTeki();
 	}
 
-	public static void main(String[] args) {
-		new GUI();
-	}
-
 	public void tekaTeki() {
-		solutionNodes = new LinkedList<>();
-		pendingNodes = new LinkedList<>();
-		deadEndNodes = new LinkedList<>();
-		childNodes = new LinkedList<>();
+		solutionNodes = new NumberBoardList();
+		pendingNodes = new NumberBoardList();
+		deadEndNodes = new NumberBoardList();
+		childNodes = new NumberBoardList();
 
 		//Buat objek goal
 		goalState = new NumberPuzzle(boardSolution);
@@ -174,7 +169,7 @@ public class GUI extends JFrame {
 				return; //Selesai jika benar
 			}
 
-			createChildNodes();     //Buat anak baru
+			createChildNodesScored();     //Buat anak baru
 
 			int newChildNodes = childNodes.size();  //Counter jumlah anak baru
 
@@ -309,7 +304,7 @@ public class GUI extends JFrame {
 		}
 	}
 
-	public String printBoardList(LinkedList<NumberPuzzle> list) {
+	public String printBoardList(NumberBoardList list) {
 		StringBuilder x = new StringBuilder();
 		for (NumberPuzzle numberPuzzle : list) {
 			x.append(printBoard(numberPuzzle));
@@ -333,5 +328,7 @@ public class GUI extends JFrame {
 		return x.toString();
 	}
 
-
+	public static void main(String[] args) {
+		new GUI();
+	}
 }

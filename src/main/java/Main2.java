@@ -79,7 +79,7 @@ public class Main2 {
 			}
 			if (newChildNodes == 0) {   //Kalau tidak ada anak baru
 				// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
-				while (solutionNodes.size() > 1 && isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
+				while (isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
 					deadEndNodes.add(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
 					pendingNodes.remove(pendingNodes.size() - 1); //Hapus node terakhir dari daftar node diproses
 					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
