@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="LinkedList alternative and made GUI to show progress">
+    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="Refined GUI, moved stuff around">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main2LinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +175,7 @@
       <workItem from="1665801897631" duration="558000" />
       <workItem from="1665802484037" duration="32000" />
       <workItem from="1665807162483" duration="20508000" />
-      <workItem from="1665887211682" duration="5537000" />
+      <workItem from="1665887211682" duration="10375000" />
     </task>
     <task id="LOCAL-00001" summary="idkwhati'sinthis">
       <created>1664869358607</created>
@@ -229,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665738545122</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Refined GUI, moved stuff around">
+      <created>1665899393751</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665899393751</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +257,8 @@
     <MESSAGE value="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster" />
     <MESSAGE value="Has heuristic" />
     <MESSAGE value="LinkedList alternative and made GUI to show progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="LinkedList alternative and made GUI to show progress" />
+    <MESSAGE value="Refined GUI, moved stuff around" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refined GUI, moved stuff around" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

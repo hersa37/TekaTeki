@@ -27,7 +27,8 @@ public class GUI extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(true);
 		setLocation(500, 200);
-		setSize(850, 500);
+		getContentPane().setBackground(new Color(172,216,230));
+		setSize(700, 500);
 
 		//Label indikator iterasi pencarian
 		iterationLabel = new JLabel("Iteration");
@@ -126,6 +127,7 @@ public class GUI extends JFrame {
 		add(isHeuristicLabel);
 		JCheckBox isHeuristicCB = new JCheckBox();
 		isHeuristicCB.setBounds(90, 250, 20, 20);
+		isHeuristicCB.setOpaque(false);
 		add(isHeuristicCB);
 
 		//Tombol untuk mulai. Berubah tergantung kondisi operasi
@@ -248,6 +250,7 @@ public class GUI extends JFrame {
 
 			isHeuristicCB.setSelected(false);
 			isHeuristicCB.setEnabled(true);
+			isHeuristic = false;
 
 			delayTF.setText("1000");
 
@@ -256,6 +259,7 @@ public class GUI extends JFrame {
 		});
 		add(resetButton);
 
+		//Child nodes
 		childLabel = new JLabel("Child Nodes");
 		childLabel.setBounds(275, 0, 100, 50);
 		add(childLabel);
@@ -265,8 +269,9 @@ public class GUI extends JFrame {
 		childTA.setEditable(false);
 		add(childTA);
 
+		//Pending nodes
 		pendingLabel = new JLabel("Pending Nodes");
-		pendingLabel.setBounds(450, 0, 100, 50);
+		pendingLabel.setBounds(370, 0, 100, 50);
 		add(pendingLabel);
 		pendingTA = new JTextArea(15, 6);
 		pendingTA.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
@@ -274,11 +279,12 @@ public class GUI extends JFrame {
 		pendingSP = new JScrollPane(pendingTA);
 		pendingSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		pendingSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		pendingSP.setBounds(455, 35, 85, 420);
+		pendingSP.setBounds(375, 35, 85, 420);
 		add(pendingSP);
 
+		//Solution nodes
 		solutionLabel = new JLabel("Solution Nodes");
-		solutionLabel.setBounds(575, 0, 100, 50);
+		solutionLabel.setBounds(465, 0, 100, 50);
 		add(solutionLabel);
 		solutionTA = new JTextArea(15, 6);
 		solutionTA.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
@@ -286,11 +292,12 @@ public class GUI extends JFrame {
 		solutionSP = new JScrollPane(solutionTA);
 		solutionSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		solutionSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		solutionSP.setBounds(580, 35, 85, 420);
+		solutionSP.setBounds(470, 35, 85, 420);
 		add(solutionSP);
 
+		//Dead end nodes
 		deadEndLabel = new JLabel("Dead End Nodes");
-		deadEndLabel.setBounds(700, 0, 100, 50);
+		deadEndLabel.setBounds(560, 0, 100, 50);
 		add(deadEndLabel);
 		deadEndTA = new JTextArea(15, 6);
 		deadEndTA.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
@@ -298,7 +305,7 @@ public class GUI extends JFrame {
 		deadEndSP = new JScrollPane(deadEndTA);
 		deadEndSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		deadEndSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		deadEndSP.setBounds(705, 35, 85, 420);
+		deadEndSP.setBounds(565, 35, 85, 420);
 		add(deadEndSP);
 
 		setVisible(true);
@@ -307,12 +314,13 @@ public class GUI extends JFrame {
 		new GUI();
 	}
 
+	//Inner class untuk backtrack. Implement runnable agar bisa dijalankan dalam thread
 	@SuppressWarnings("DuplicatedCode")
 	class Backtrack implements Runnable {
 
-		private volatile boolean running = true;
-		private volatile boolean paused = false;
-		private final Object pauseLock = new Object();
+		private volatile boolean running = true;  //Flag untuk program jalan
+		private volatile boolean paused = false; //Flag untuk program pause
+		private final Object pauseLock = new Object();  //Objek untuk sinkronisasi
 		private int[][] goal, start;
 
 		public Backtrack(int[][] goal, int[][] start) {
@@ -320,23 +328,21 @@ public class GUI extends JFrame {
 			this.start = start;
 		}
 
+		//Method yang dijalankan saat runnable di-start
 		@Override
 		public void run() {
 			NumberBoardList solutionNodes = new NumberBoardList();
 			NumberBoardList pendingNodes = new NumberBoardList();
 
-
 			//Buat objek goal
 			NumberPuzzle goalState = new NumberPuzzle(goal);
-
-			//Array awal
-
 			//Objek board awal
 			NumberPuzzle startNode = new NumberPuzzle(start);
 			startNode.score(goalState);
+
 			//State node yang diproses = board awal
 			NumberPuzzle currentState = startNode;
-
+			//Tambahkan current state ke solution nodes dan pending nodes
 			solutionNodes.addFirst(currentState);
 			pendingNodes.addFirst(currentState);
 
@@ -352,21 +358,9 @@ public class GUI extends JFrame {
 			NumberBoardList deadEndNodes = new NumberBoardList();
 			NumberBoardList childNodes = new NumberBoardList();
 
-			iterationLabel.setText("Iteration " + iteration);
-			iteration++;
-			childNodes.clear();     //Kosongkan daftar anak
-
-			if (isEqual(currentState, goalState)) { //Cek apakah node sekarang = node goal
-				System.out.println("Solution found");
-				currentDeadLabel.setText("Goal Found");
-				currentDeadLabel.setForeground(Color.black);
-				currentDeadLabel.setVisible(true);
-				childTA.setText("");
-				solutionTA.setBackground(Color.green);
-				return; //Selesai jika benar
-			}
-
+			//Kondisi running
 			while (running && !pendingNodes.isEmpty()) {
+				//Code block untuk deteksi pause dengan wait dari objek pauseLock
 				synchronized (pauseLock) {
 					if (!running) {
 						break;
@@ -383,6 +377,29 @@ public class GUI extends JFrame {
 					}
 				}
 
+				iterationLabel.setText("Iteration " + iteration);
+				iteration++;
+				childNodes.clear();     //Kosongkan daftar anak
+				childTA.setText("");    //Kosongkan text area
+
+
+				if (isEqual(currentState, goalState)) { //Cek apakah node sekarang = node goal
+					System.out.println("Solution found");
+					currentDeadLabel.setText("Goal Found");
+					currentDeadLabel.setForeground(Color.black);
+					currentDeadLabel.setVisible(true);
+					childTA.setText("");
+					solutionTA.setBackground(Color.green);
+					return; //Selesai jika benar
+				}
+
+				//Cek apakah heuristic atau tidak
+				if(isHeuristic){
+					createChildNodesScored(currentState,goalState, childNodes, pendingNodes, deadEndNodes);
+				} else {
+					createChildNodes(currentState, childNodes, pendingNodes, deadEndNodes);     //Buat anak baru
+				}
+
 				int newChildNodes = childNodes.size();  //Counter jumlah anak baru
 
 				if (newChildNodes == 0) {   //Kalau tidak ada anak baru
@@ -393,9 +410,35 @@ public class GUI extends JFrame {
 						deadEndTA.setText(printBoardList(deadEndNodes));
 						deadEndLabel.setText("Dead end " + deadEndNodes.size());
 
+						//Delay
+						try {
+							TimeUnit.MILLISECONDS.sleep(time);
+						} catch (InterruptedException e) {
+							throw new RuntimeException(e);
+						}
+
+						//Cek pause atau tidak
+						synchronized (pauseLock) {
+							if (!running) {
+								break;
+							}
+							if (paused) {
+								try {
+									pauseLock.wait();
+								} catch (InterruptedException e) {
+									break;
+								}
+								if (!running) {
+									break;
+								}
+							}
+						}
+
 						pendingNodes.removeFirst(); //Hapus node pertama di daftar node dibuka
 						pendingLabel.setText("Pending " + pendingNodes.size());
 						pendingTA.setText(printBoardList(pendingNodes));
+
+						//Keluar kalau root dead end
 						if (pendingNodes.isEmpty()) {
 							currentDeadLabel.setText("No Solution");
 							return;
@@ -408,60 +451,43 @@ public class GUI extends JFrame {
 						currentState = pendingNodes.getFirst(); //Proses node terakhir dari daftar yang belum diproses
 						currentTA.setText(printBoard(currentState));
 					}
-					currentDeadLabel.setVisible(false);
-					solutionNodes.addFirst(currentState); //Tambah node saat ini ke daftar rute solusi
+
+					currentDeadLabel.setVisible(false);         //Sembunyikan tulisan "dead end"
+					solutionNodes.addFirst(currentState);   //Tambah node saat ini ke daftar rute solusi
 					solutionTA.setText(printBoardList(solutionNodes));
 				} else { //Kalau masih ada anak baru
 					childTA.setText(printBoardList(childNodes));
 
-					for (NumberPuzzle childNode : childNodes) { //Tambahkan anak yang tidak duplikat ke daftar node yang belum diproses
+					for (NumberPuzzle childNode : childNodes) { //Tambahkan anak
 						pendingNodes.addFirst(childNode);
 					}
 
 					pendingTA.setText(printBoardList(pendingNodes));
 					pendingLabel.setText("Pending " + pendingNodes.size());
 
-					currentState = pendingNodes.getFirst(); //Proses node terakhir dari daftar yang belum diproses
+					currentState = pendingNodes.getFirst(); //Proses node pertama dari daftar yang belum diproses
 					currentTA.setText(printBoard(currentState));
 
 					solutionNodes.addFirst(currentState); //Tambah node saat ini ke darfat rute solusi
 					solutionTA.setText(printBoardList(solutionNodes));
 					solutionLabel.setText("Solution " + solutionNodes.size());
-				}
 
-
-				childNodes.clear();     //Kosongkan daftar anak
-
-				try {
-					TimeUnit.MILLISECONDS.sleep(time);
-				} catch (InterruptedException e) {
-					throw new RuntimeException(e);
-				}
-				iterationLabel.setText("Iteration " + iteration);
-				iteration++;
-
-
-				if (isEqual(currentState, goalState)) { //Cek apakah node sekarang = node goal
-					System.out.println("Solution found");
-					currentDeadLabel.setText("Goal Found");
-					currentDeadLabel.setForeground(Color.black);
-					currentDeadLabel.setVisible(true);
-					childTA.setText("");
-					solutionTA.setBackground(Color.green);
-					return; //Selesai jika benar
-				}
-				if(isHeuristic){
-					createChildNodesScored(currentState,goalState, childNodes, pendingNodes, deadEndNodes);
-				} else {
-					createChildNodes(currentState, childNodes, pendingNodes, deadEndNodes);     //Buat anak baru
+					//Delay
+					try {
+						TimeUnit.MILLISECONDS.sleep(time);
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
 				}
 			}
 		}
 
+		//Method untuk pause
 		public void pause() {
 			paused = true;
 		}
 
+		//Method untuk lanjutkan
 		public void resume() {
 			synchronized (pauseLock) {
 				paused = false;
@@ -469,11 +495,13 @@ public class GUI extends JFrame {
 			}
 		}
 
+		//Method untuk berhentikan
 		public void stop(){
 			running = false;
 			resume();
 		}
 
+		//Buat anak dari node, bandingkan dengan daftar lain untuk cari tahu unik atau tidak
 		public void createChildNodes(NumberPuzzle currentState, NumberBoardList childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
 			NumberPuzzle down = new NumberPuzzle(currentState);
 			down.down();
@@ -497,6 +525,7 @@ public class GUI extends JFrame {
 			}
 		}
 
+		//Buat anak dari node, bandingkan dengan daftar untuk cari tahu unik atau tidak. Masukkan yang unik dan nilainya lebih kecil daripada node parent
 		public void createChildNodesScored(NumberPuzzle currentState, NumberPuzzle goalState, NumberBoardList childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
 			@SuppressWarnings("DuplicatedCode") NumberPuzzle down = new NumberPuzzle(currentState);
 			down.down();
@@ -524,10 +553,12 @@ public class GUI extends JFrame {
 			}
 		}
 
+		//Cari tau apakah 2 node sama
 		public boolean isEqual(NumberPuzzle nodeA, NumberPuzzle nodeB) {
 			return Arrays.deepEquals(nodeA.getNumberBoard(), nodeB.getNumberBoard());
 		}
 
+		//cari tahu apakah node baru
 		public boolean isNewNode(NumberPuzzle node, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
 
 			for (NumberPuzzle pending : pendingNodes) {

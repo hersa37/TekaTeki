@@ -143,7 +143,6 @@ public class Main2 {
 		}
 	}
 
-
 	public static boolean isEqual(NumberPuzzle nodeA, NumberPuzzle nodeB) {
 		return Arrays.deepEquals(nodeA.getNumberBoard(), nodeB.getNumberBoard());
 	}
