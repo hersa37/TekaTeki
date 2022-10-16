@@ -1,14 +1,12 @@
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Main2 {
-	static List<NumberPuzzle> solutionNodes;    //Daftar rute node solusi
-	static List<NumberPuzzle> pendingNodes;     //Daftar node yang belum diproses
-	static List<NumberPuzzle> deadEndNodes;     //Daftar node buntu
-	static List<NumberPuzzle> childNodes;       //Daftar anak dari node yang sedang diproses
+	static NumberBoardList solutionNodes;    //Daftar rute node solusi
+	static NumberBoardList pendingNodes;     //Daftar node yang belum diproses
+	static NumberBoardList deadEndNodes;     //Daftar node buntu
+	static NumberBoardList childNodes;       //Daftar anak dari node yang sedang diproses
 	static NumberPuzzle currentState;           //Node yang sedang diproses
 	static int[][] boardSolution = {            //Array goal node
 			{1, 2, 3},
@@ -19,10 +17,10 @@ public class Main2 {
 
 	public static void main(String[] args) {
 
-		solutionNodes = new ArrayList<>();
-		pendingNodes = new ArrayList<>();
-		deadEndNodes = new ArrayList<>();
-		childNodes = new ArrayList<>();
+		solutionNodes = new NumberBoardList();
+		pendingNodes = new NumberBoardList();
+		deadEndNodes = new NumberBoardList();
+		childNodes = new NumberBoardList();
 
 		//Buat objek goal
 		solutionState = new NumberPuzzle(boardSolution);
@@ -38,22 +36,20 @@ public class Main2 {
 		startNode.score(solutionState);
 		//State node yang diproses = board awal
 		currentState = startNode;
-		solutionNodes.add(currentState);
-		pendingNodes.add(currentState);
+		solutionNodes.addFirst(currentState);
+		pendingNodes.addFirst(currentState);
 
 		//Panggil backtrack
-		try {
-			backtrack();
-		} catch (ArrayIndexOutOfBoundsException ar) {
-			System.out.println("No solution");
-		}
+		backtrack();
+
 		//Cetak rute solusi
 		StringBuilder output = new StringBuilder();
 		for (NumberPuzzle solutions : solutionNodes) {
 			solutions.printBoard();
-			output.append(solutions.toString() + "\n");
+			output.append(solutions).append("\n");
 		}
 
+		System.out.println(output);
 
 		toFile("non-heuristic.txt", output.toString());
 
@@ -67,38 +63,35 @@ public class Main2 {
 				System.out.println("Solution found");
 				return; //Selesai jika benar
 			}
-			childNodes.clear();     //Kosongkan daftar anak
+
 			createChildNodes();     //Buat anak baru
 			int newChildNodes = childNodes.size();  //Counter jumlah anak baru
-			for (NumberPuzzle childNode : childNodes) {
-				if (!isNewNode(childNode)) { //Cek apakah anak sudah ada di daftar lain atau belum
-					newChildNodes--; //Kurangi counter anak baru
-				} else {
-					break;  //Keluar dari loop karena masih ada anak baru
-				}
-			}
+
 			if (newChildNodes == 0) {   //Kalau tidak ada anak baru
 				// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
-				while (isEqual(currentState, solutionNodes.get(solutionNodes.size() - 1))) {
-					deadEndNodes.add(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
-					pendingNodes.remove(pendingNodes.size() - 1); //Hapus node terakhir dari daftar node diproses
-					solutionNodes.remove(solutionNodes.size() - 1); //Hapus node terakhir dari daftar rute solusi
-					currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
+				while (isEqual(currentState, solutionNodes.getFirst())) {
+					deadEndNodes.addFirst(currentState);                 //Pindahkan node yang diproses ke daftar node buntu
+					pendingNodes.removeFirst(); //Hapus node pertama dari daftar node diproses
+					solutionNodes.removeFirst(); //Hapus node pertama dari daftar rute solusi
+					if (pendingNodes.isEmpty()) {
+						System.out.println("No Solution");
+						return;
+					}
+					currentState = pendingNodes.getFirst(); //Proses node terakhir dari daftar yang belum diproses
 				}
-				solutionNodes.add(currentState); //Tambah node saat ini ke daftar rute solusi
+				solutionNodes.addFirst(currentState); //Tambah node saat ini ke daftar rute solusi
 			} else { //Kalau masih ada anak baru
 				for (NumberPuzzle childNode : childNodes) { //Tambahkan anak yang tidak duplikat ke daftar node yang belum diproses
-					if (isNewNode(childNode)) {
-						pendingNodes.add(childNode);
-					}
+					pendingNodes.addFirst(childNode);
 				}
-				currentState = pendingNodes.get(pendingNodes.size() - 1); //Proses node terakhir dari daftar yang belum diproses
-				solutionNodes.add(currentState); //Tambah node saat ini ke darfat rute solusi
+				currentState = pendingNodes.getFirst(); //Proses node terakhir dari daftar yang belum diproses
+				solutionNodes.addFirst(currentState); //Tambah node saat ini ke darfat rute solusi
 			}
 		}
 	}
 
 	public static void createChildNodes() {
+		childNodes.clear();     //Kosongkan daftar anak
 		NumberPuzzle down = new NumberPuzzle(currentState);
 		down.down();
 		NumberPuzzle right = new NumberPuzzle(currentState);
@@ -107,13 +100,23 @@ public class Main2 {
 		up.up();
 		NumberPuzzle left = new NumberPuzzle(currentState);
 		left.left();
-		childNodes.add(down);
-		childNodes.add(right);
-		childNodes.add(up);
-		childNodes.add(left);
+
+		if (isNewNode(down)) {
+			childNodes.add(down);
+		}
+		if (isNewNode(right)) {
+			childNodes.add(right);
+		}
+		if (isNewNode(up)) {
+			childNodes.add(up);
+		}
+		if (isNewNode(left)) {
+			childNodes.add(left);
+		}
 	}
 
 	public static void createChildNodesScored() {
+		childNodes.clear();     //Kosongkan daftar anak
 		NumberPuzzle down = new NumberPuzzle(currentState);
 		down.down();
 		down.score(solutionState);
@@ -126,16 +129,16 @@ public class Main2 {
 		NumberPuzzle left = new NumberPuzzle(currentState);
 		left.left();
 		left.score(solutionState);
-		if (down.getScore() <= currentState.getScore()) {
+		if ((down.getScore() <= currentState.getScore()) && isNewNode(down)) {
 			childNodes.add(down);
 		}
-		if (right.getScore() <= currentState.getScore()) {
+		if ((right.getScore() <= currentState.getScore()) && isNewNode(right)) {
 			childNodes.add(right);
 		}
-		if (up.getScore() <= currentState.getScore()) {
+		if ((up.getScore() <= currentState.getScore()) && isNewNode(up)) {
 			childNodes.add(up);
 		}
-		if (left.getScore() <= currentState.getScore()) {
+		if ((left.getScore() <= currentState.getScore()) && isNewNode(left)) {
 			childNodes.add(left);
 		}
 	}

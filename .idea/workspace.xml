@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="Has heuristic">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main2LinkedList.java" afterDir="false" />
+    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="LinkedList alternative and made GUI to show progress">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main2LinkedList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/echa.larik/Larik.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/echa.larik/Larik.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +43,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2FeFk7sOct7aSknv5wh0RdwOnIr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -62,7 +64,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -101,27 +103,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
+    <configuration name="MainClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainClass" />
       <module name="TekaTeki1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.MainClass" />
       <item itemvalue="Application.GUI" />
       <item itemvalue="Application.Main3" />
       <item itemvalue="Application.Main2" />
-      <item itemvalue="Application.Test" />
       <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GUI" />
+        <item itemvalue="Application.MainClass" />
         <item itemvalue="Application.Main2" />
         <item itemvalue="Application.Main3" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +168,17 @@
       <workItem from="1665630837735" duration="2761000" />
       <workItem from="1665635534806" duration="6993000" />
       <workItem from="1665642984837" duration="5278000" />
-      <workItem from="1665648276337" duration="4820000" />
+      <workItem from="1665648276337" duration="5112000" />
+      <workItem from="1665702039125" duration="2720000" />
+      <workItem from="1665707527606" duration="599000" />
+      <workItem from="1665713266011" duration="768000" />
+      <workItem from="1665717161386" duration="5441000" />
+      <workItem from="1665793232142" duration="8000" />
+      <workItem from="1665801343154" duration="97000" />
+      <workItem from="1665801897631" duration="558000" />
+      <workItem from="1665802484037" duration="32000" />
+      <workItem from="1665807162483" duration="20508000" />
+      <workItem from="1665887211682" duration="5537000" />
     </task>
     <task id="LOCAL-00001" summary="idkwhati'sinthis">
       <created>1664869358607</created>
@@ -203,7 +215,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665381480885</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="LinkedList alternative and made GUI to show progress">
+      <created>1665657238581</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665657238582</updated>
+    </task>
+    <task id="LOCAL-00007" summary="LinkedList alternative and made GUI to show progress">
+      <created>1665738545122</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665738545122</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +252,8 @@
     <MESSAGE value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
     <MESSAGE value="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster" />
     <MESSAGE value="Has heuristic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Has heuristic" />
+    <MESSAGE value="LinkedList alternative and made GUI to show progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="LinkedList alternative and made GUI to show progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -239,26 +266,6 @@
           <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main2.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
