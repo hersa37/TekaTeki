@@ -1,6 +1,9 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class NumberBoardList extends ArrayList<NumberPuzzle> {
+/**
+ * Kelas yang merepresentasikan list dari papan permainan puzzle angka
+ */
+public class NumberBoardList extends LinkedList<NumberPuzzle> {
 
 	public NumberBoardList(){
 		super();
@@ -14,7 +17,8 @@ public class NumberBoardList extends ArrayList<NumberPuzzle> {
 		return get(0);
 	}
 
-	public void removeFirst() {
+	public NumberPuzzle removeFirst() {
 		remove(0);
+		return null;
 	}
 }

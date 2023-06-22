@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="Refined GUI, moved stuff around">
+    <list default="true" id="a5011041-edb9-49d5-887e-2eaf7e59a0cb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/echa/Larik.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NumberBoardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NumberBoardList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NumberPuzzle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,18 +26,8 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../../../StrukturDataLinear/Week01/SDL_W01/src/main/java/echa.larik/Larik.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,10 +39,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="2FeFk7sOct7aSknv5wh0RdwOnIr" />
+  <component name="ProjectId" id="2GDZfRnmRjKRPd201kPBI4Glnap" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -55,233 +51,101 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/echa/College/Semester 3/StrukturDataLinear/Week01/SDL_W01&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/echa/College/Semester 3/SistemCerdas/Week06/TekaTeki/src/main/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GUI">
-    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.GUI (3)">
+    <configuration name="GUI (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUI" />
-      <module name="TekaTeki1" />
+      <module name="TekaTeki" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="18" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TekaTeki1" />
+    <configuration name="GUI (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI" />
+      <module name="TekaTeki" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI" />
+      <module name="TekaTeki" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI" />
+      <module name="TekaTeki" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main2" />
-      <module name="TekaTeki1" />
+      <module name="TekaTeki" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main3" />
-      <module name="TekaTeki1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainClass" />
-      <module name="TekaTeki1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.MainClass" />
-      <item itemvalue="Application.GUI" />
-      <item itemvalue="Application.Main3" />
-      <item itemvalue="Application.Main2" />
-      <item itemvalue="Application.Main" />
-    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GUI (3)" />
         <item itemvalue="Application.GUI" />
-        <item itemvalue="Application.MainClass" />
         <item itemvalue="Application.Main2" />
-        <item itemvalue="Application.Main3" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GUI (2)" />
+        <item itemvalue="Application.GUI (1)" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="839ff5cc-9f54-446a-aa46-a3912622d81f" name="Changes" comment="" />
-      <created>1664844782604</created>
+      <changelist id="a5011041-edb9-49d5-887e-2eaf7e59a0cb" name="Changes" comment="" />
+      <created>1665925221425</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1664844782604</updated>
-      <workItem from="1664844784125" duration="1269000" />
-      <workItem from="1664846090164" duration="302000" />
-      <workItem from="1664865610678" duration="307000" />
-      <workItem from="1664866212252" duration="711000" />
-      <workItem from="1664866933835" duration="337000" />
-      <workItem from="1664867427248" duration="184000" />
-      <workItem from="1664867649850" duration="148000" />
-      <workItem from="1664867817303" duration="114000" />
-      <workItem from="1664867942671" duration="186000" />
-      <workItem from="1664868182736" duration="1026000" />
-      <workItem from="1664869225754" duration="4862000" />
-      <workItem from="1664938061827" duration="356000" />
-      <workItem from="1664952848010" duration="2823000" />
-      <workItem from="1665014335475" duration="4000" />
-      <workItem from="1665045149638" duration="16492000" />
-      <workItem from="1665101174016" duration="4065000" />
-      <workItem from="1665106479014" duration="4965000" />
-      <workItem from="1665123707384" duration="10228000" />
-      <workItem from="1665186491360" duration="7653000" />
-      <workItem from="1665194520034" duration="1354000" />
-      <workItem from="1665206223011" duration="1206000" />
-      <workItem from="1665214011606" duration="698000" />
-      <workItem from="1665229340533" duration="2100000" />
-      <workItem from="1665275163938" duration="3994000" />
-      <workItem from="1665318280221" duration="6623000" />
-      <workItem from="1665361508236" duration="17000" />
-      <workItem from="1665366494042" duration="6656000" />
-      <workItem from="1665381522502" duration="3755000" />
-      <workItem from="1665396904054" duration="28000" />
-      <workItem from="1665618656465" duration="2430000" />
-      <workItem from="1665630837735" duration="2761000" />
-      <workItem from="1665635534806" duration="6993000" />
-      <workItem from="1665642984837" duration="5278000" />
-      <workItem from="1665648276337" duration="5112000" />
-      <workItem from="1665702039125" duration="2720000" />
-      <workItem from="1665707527606" duration="599000" />
-      <workItem from="1665713266011" duration="768000" />
-      <workItem from="1665717161386" duration="5441000" />
-      <workItem from="1665793232142" duration="8000" />
-      <workItem from="1665801343154" duration="97000" />
-      <workItem from="1665801897631" duration="558000" />
-      <workItem from="1665802484037" duration="32000" />
-      <workItem from="1665807162483" duration="20508000" />
-      <workItem from="1665887211682" duration="10375000" />
+      <updated>1665925221425</updated>
+      <workItem from="1665925223853" duration="257000" />
+      <workItem from="1665925631060" duration="1321000" />
+      <workItem from="1665965589050" duration="179000" />
+      <workItem from="1665975910667" duration="2119000" />
+      <workItem from="1665984408967" duration="2020000" />
+      <workItem from="1666008104997" duration="632000" />
+      <workItem from="1666048184883" duration="707000" />
+      <workItem from="1666064317748" duration="1803000" />
+      <workItem from="1666089384358" duration="1563000" />
+      <workItem from="1666094098046" duration="47000" />
+      <workItem from="1666163596896" duration="154000" />
+      <workItem from="1670203963362" duration="255000" />
+      <workItem from="1676943034363" duration="91000" />
+      <workItem from="1676943152432" duration="3000" />
+      <workItem from="1676943698766" duration="5000" />
+      <workItem from="1683534473377" duration="2585000" />
+      <workItem from="1683605171716" duration="18000" />
+      <workItem from="1687261033244" duration="6742000" />
+      <workItem from="1687343867070" duration="3492000" />
+      <workItem from="1687412927137" duration="1524000" />
     </task>
-    <task id="LOCAL-00001" summary="idkwhati'sinthis">
-      <created>1664869358607</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1664869358607</updated>
-    </task>
-    <task id="LOCAL-00002" summary="checkpoint before I give up">
-      <created>1665143011230</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1665143011230</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long">
-      <created>1665194260051</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1665194260051</updated>
-    </task>
-    <task id="LOCAL-00004" summary="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster">
-      <created>1665324639906</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1665324639906</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Has heuristic">
-      <created>1665381480885</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1665381480885</updated>
-    </task>
-    <task id="LOCAL-00006" summary="LinkedList alternative and made GUI to show progress">
-      <created>1665657238581</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1665657238582</updated>
-    </task>
-    <task id="LOCAL-00007" summary="LinkedList alternative and made GUI to show progress">
-      <created>1665738545122</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1665738545122</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Refined GUI, moved stuff around">
-      <created>1665899393751</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1665899393751</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="idkwhati'sinthis" />
-    <MESSAGE value="checkpoint before I give up" />
-    <MESSAGE value="Made to work with 2x2, should work with 3x3&#10;&#10;haven't checked, takes too long" />
-    <MESSAGE value="IT WORKS WITH 3X3&#10;&#10;gonna try to add score to make it faster" />
-    <MESSAGE value="Has heuristic" />
-    <MESSAGE value="LinkedList alternative and made GUI to show progress" />
-    <MESSAGE value="Refined GUI, moved stuff around" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refined GUI, moved stuff around" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint type="java-exception">
-          <properties class="java.util.ConcurrentModificationException" package="java.util" />
-          <option name="timeStamp" value="4" />
-        </breakpoint>
-        <breakpoint type="java-exception">
-          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
-          <option name="timeStamp" value="7" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="pendingNodes" language="JAVA" />
-        <watch expression="solutionNodes" language="JAVA" />
-        <watch expression="deadEndNodes" language="JAVA" />
-        <watch expression="solutionState" language="JAVA" />
-        <watch expression="currentState" language="JAVA" />
-        <watch expression="pendingNodes.get(pendingNodes.size() - 1)" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

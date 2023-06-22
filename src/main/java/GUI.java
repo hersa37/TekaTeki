@@ -1,9 +1,13 @@
+import echa.Larik;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.InputMismatchException;
+import java.util.PriorityQueue;
 import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame {
@@ -15,19 +19,25 @@ public class GUI extends JFrame {
 	JButton resetButton, startButton;
 	Backtrack trackBack;
 	Thread t;
-	int iteration = 0;
-	long time = 1000;
+	int iteration = 1;
+	long time = 50;
 	boolean started = false;
 	boolean isHeuristic = false;
 
 	public GUI() {
 		//Pengaturan frame
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+		         UnsupportedLookAndFeelException e) {
+			throw new RuntimeException(e);
+		}
+
 		setTitle("Teka Teki");
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(true);
 		setLocation(500, 200);
-		getContentPane().setBackground(new Color(172,216,230));
 		setSize(700, 500);
 
 		//Label indikator iterasi pencarian
@@ -89,9 +99,9 @@ public class GUI extends JFrame {
 					{7, 6, 5}
 			};
 			int[][] defaultStart = {
-					{0, 1, 2},
-					{7, 8, 3},
-					{6, 5, 4}
+					{1, 2, 3},
+					{0, 8, 4},
+					{7, 6, 5}
 			};
 			//Masukkan nilai array ke table
 			for (int i = 0; i < 3; i++) {
@@ -105,21 +115,36 @@ public class GUI extends JFrame {
 
 		//Tentukan delay operasi
 		JLabel delayLabel = new JLabel("Delay (ms)");
-		delayLabel.setBounds(30, 290,100, 20);
+		delayLabel.setBounds(30, 290, 100, 20);
 		add(delayLabel);
 		JTextField delayTF = new JTextField("1000");
-		delayTF.setBounds(30,320,100,20);
+		delayTF.setBounds(30, 310, 100, 20);
 		delayTF.addActionListener(actionEvent -> {
 			try {
 				time = Long.parseLong(delayTF.getText());
-				if(time < 0) {
+				if (time < 0) {
 					time = 0;
 				}
-			} catch(Exception e) {
-				JOptionPane.showMessageDialog(null, "Incorrect type","Error",JOptionPane.ERROR_MESSAGE);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Incorrect type", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		add(delayTF);
+
+		JButton randomStartB = new JButton("Random Start");
+		randomStartB.setBounds(70, 340, 120, 20);
+		randomStartB.addActionListener(actionEvent -> {
+			int[] array = Larik.generateArrayUniform(9, 0, 1);
+			array = Larik.randomizeArray(array);
+			int index = 0;
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					startTable.setValueAt(array[index], i, j);
+					index++;
+				}
+			}
+		});
+		add(randomStartB);
 
 		//Tentukan backtrack heuristic atau bukan
 		JLabel isHeuristicLabel = new JLabel("Heuristic");
@@ -151,19 +176,20 @@ public class GUI extends JFrame {
 					startTableLabel.setVisible(false);
 					startTable.setVisible(false);
 					defaultValue.setVisible(false);
+					randomStartB.setVisible(false);
 					//Set text untuk tombol menjadi "Pause" agar bisa digunakan untuk pause
 					startButton.setText("Pause");
-					startButton.setBounds(155,290,70,20);
+					startButton.setBounds(155, 290, 70, 20);
 					//Tampilkan tombol reset
 					resetButton.setVisible(true);
 					//Cek heuristic atau bukan
-					if(isHeuristicCB.isSelected()) {
+					if (isHeuristicCB.isSelected()) {
 						isHeuristic = true;
 					}
 					isHeuristicCB.setEnabled(false);
 					//Parse delay
 					time = Long.parseLong(delayTF.getText());
-					if(time < 0) {
+					if (time < 0) {
 						time = 0;
 					}
 					//Set flag menandakan sudah dimulai
@@ -180,11 +206,11 @@ public class GUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Masukkan semua angka", "Error", JOptionPane.ERROR_MESSAGE);
 
 				}
-			//Pause operasi
-			} else if(startButton.getText().equals("Pause")){
+				//Pause operasi
+			} else if (startButton.getText().equals("Pause")) {
 				startButton.setText("Resume");
 				trackBack.pause();
-			//Lanjutkan operasi
+				//Lanjutkan operasi
 			} else {
 				startButton.setText("Pause");
 				trackBack.resume();
@@ -194,8 +220,8 @@ public class GUI extends JFrame {
 
 		//Tombol reset. Tidak muncul saat belum mulai
 		resetButton = new JButton("Reset");
-		resetButton.setBounds(155,320, 70,20);
-		resetButton.setMargin(new Insets(0,0,0,0));
+		resetButton.setBounds(155, 320, 70, 20);
+		resetButton.setMargin(new Insets(0, 0, 0, 0));
 		resetButton.setVisible(false);
 		resetButton.addActionListener(actionEvent -> {
 			//Berhentikan runnable dan tunggu thread berhenti
@@ -253,11 +279,13 @@ public class GUI extends JFrame {
 			isHeuristic = false;
 
 			delayTF.setText("1000");
+			randomStartB.setVisible(true);
 
 			resetButton.setVisible(false);
 
 		});
 		add(resetButton);
+
 
 		//Child nodes
 		childLabel = new JLabel("Child Nodes");
@@ -308,8 +336,10 @@ public class GUI extends JFrame {
 		deadEndSP.setBounds(565, 35, 85, 420);
 		add(deadEndSP);
 
+
 		setVisible(true);
 	}
+
 	public static void main(String[] args) {
 		new GUI();
 	}
@@ -331,20 +361,22 @@ public class GUI extends JFrame {
 		//Method yang dijalankan saat runnable di-start
 		@Override
 		public void run() {
-			NumberBoardList solutionNodes = new NumberBoardList();
-			NumberBoardList pendingNodes = new NumberBoardList();
+			NumberBoardList solutionNodes = new NumberBoardList(); // Menyimpan rute penyelesaian
+			NumberBoardList pendingNodes = new NumberBoardList(); // Menyimpan daftar node yang sedang/akan diproses
 
-			//Buat objek goal
-			NumberPuzzle goalState = new NumberPuzzle(goal);
-			//Objek board awal
-			NumberPuzzle startNode = new NumberPuzzle(start);
-			startNode.score(goalState);
+			NumberPuzzle goalState = new NumberPuzzle(goal); // Kondisi tujuan
 
-			//State node yang diproses = board awal
-			NumberPuzzle currentState = startNode;
-			//Tambahkan current state ke solution nodes dan pending nodes
-			solutionNodes.addFirst(currentState);
-			pendingNodes.addFirst(currentState);
+			NumberPuzzle startNode = new NumberPuzzle(start); // Kondisi awal
+			startNode.score(goalState); // Menentukan skor start node untuk digunakan saat best first search
+
+
+			NumberPuzzle currentState = startNode; // Menentukan node awal sebagai node sekarang
+
+			solutionNodes.addFirst(currentState); // Tambahkan node sekarang ke daftar solusi
+			pendingNodes.addFirst(currentState); // Tambahkan node sekarang ke daftar node untuk dikerjakan
+
+			NumberBoardList deadEndNodes = new NumberBoardList(); // List untuk node yang terbukti tidak bisa mencapai goal
+			PriorityQueue<NumberPuzzle> childNodes = new PriorityQueue<>(4, Comparator.comparingInt(NumberPuzzle::getScore) ); // List untuk node anak dari current state
 
 			goalTA.setText(printBoard(goalState));
 			currentTA.setText(printBoard(currentState));
@@ -354,14 +386,9 @@ public class GUI extends JFrame {
 			solutionLabel.setText("Solution " + solutionNodes.size());
 			System.out.println("Here");
 
-			//Start Backtrack
-			NumberBoardList deadEndNodes = new NumberBoardList();
-			NumberBoardList childNodes = new NumberBoardList();
-
-			//Kondisi running
-			while (running && !pendingNodes.isEmpty()) {
-				//Code block untuk deteksi pause dengan wait dari objek pauseLock
-				synchronized (pauseLock) {
+			// Start backtrack
+			while (running && !pendingNodes.isEmpty()) { // Selama masih ada node untuk dioperasikan dan masih diatur untuk tetap jalan, telusuri terus
+				synchronized (pauseLock) { // Digunakan untuk memberhentikan kode saat diminta
 					if (!running) {
 						break;
 					}
@@ -377,13 +404,13 @@ public class GUI extends JFrame {
 					}
 				}
 
-				iterationLabel.setText("Iteration " + iteration);
+				iterationLabel.setText("Iteration " + iteration); // Menghitung iterasi
 				iteration++;
 				childNodes.clear();     //Kosongkan daftar anak
 				childTA.setText("");    //Kosongkan text area
+				currentTA.setText(printBoard(currentState));
 
-
-				if (isEqual(currentState, goalState)) { //Cek apakah node sekarang = node goal
+				if (isEqual(currentState, goalState)) { // Cek apakah kondisi sekarang adalah goal. Jika iya, maka berhentikan program dan tunjukkan kalau solusi ditemukan
 					System.out.println("Solution found");
 					currentDeadLabel.setText("Goal Found");
 					currentDeadLabel.setForeground(Color.black);
@@ -393,16 +420,14 @@ public class GUI extends JFrame {
 					return; //Selesai jika benar
 				}
 
-				//Cek apakah heuristic atau tidak
-				if(isHeuristic){
-					createChildNodesScored(currentState,goalState, childNodes, pendingNodes, deadEndNodes);
+				// Cek apakah heuristic atau tidak. Heuristic menggunakan best first search. Jika tidak, maka akan menelusuri secaara urut.
+				if (isHeuristic) {
+					createChildNodesScored(currentState, goalState, childNodes, pendingNodes, deadEndNodes); //Menggunakan best first search
 				} else {
-					createChildNodes(currentState, childNodes, pendingNodes, deadEndNodes);     //Buat anak baru
+					createChildNodes(currentState, childNodes, pendingNodes, deadEndNodes);
 				}
 
-				int newChildNodes = childNodes.size();  //Counter jumlah anak baru
-
-				if (newChildNodes == 0) {   //Kalau tidak ada anak baru
+				if (childNodes.isEmpty()) {   //Kalau tidak ada anak baru, berarti node merupakan dead end. Masukkan node-node yang menuju node ini ke dalam dead end
 					currentDeadLabel.setVisible(true);
 					// Loop selama rute solusi tidak kosong dan node yang diproses sama dengan node terakhir rute solusi
 					while (isEqual(currentState, solutionNodes.getFirst())) {
@@ -435,18 +460,21 @@ public class GUI extends JFrame {
 						}
 
 						pendingNodes.removeFirst(); //Hapus node pertama di daftar node dibuka
+						solutionNodes.removeFirst(); //Hapus node pertama di daftar rute solusi
 						pendingLabel.setText("Pending " + pendingNodes.size());
-						pendingTA.setText(printBoardList(pendingNodes));
-
+						solutionLabel.setText("Solution " + solutionNodes.size());
 						//Keluar kalau root dead end
+
 						if (pendingNodes.isEmpty()) {
 							currentDeadLabel.setText("No Solution");
+							pendingTA.setText("");
+							solutionTA.setText("");
 							return;
 						}
 
-						solutionNodes.removeFirst(); //Hapus node pertama di daftar rute solusi
+						pendingTA.setText(printBoardList(pendingNodes));
 						solutionTA.setText(printBoardList(solutionNodes));
-						solutionLabel.setText("Solution " + solutionNodes.size());
+
 
 						currentState = pendingNodes.getFirst(); //Proses node terakhir dari daftar yang belum diproses
 						currentTA.setText(printBoard(currentState));
@@ -462,6 +490,13 @@ public class GUI extends JFrame {
 						pendingNodes.addFirst(childNode);
 					}
 
+					//Delay
+					try {
+						TimeUnit.MILLISECONDS.sleep(time);
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
+
 					pendingTA.setText(printBoardList(pendingNodes));
 					pendingLabel.setText("Pending " + pendingNodes.size());
 
@@ -471,23 +506,20 @@ public class GUI extends JFrame {
 					solutionNodes.addFirst(currentState); //Tambah node saat ini ke darfat rute solusi
 					solutionTA.setText(printBoardList(solutionNodes));
 					solutionLabel.setText("Solution " + solutionNodes.size());
-
-					//Delay
-					try {
-						TimeUnit.MILLISECONDS.sleep(time);
-					} catch (InterruptedException e) {
-						throw new RuntimeException(e);
-					}
 				}
 			}
 		}
 
-		//Method untuk pause
+		/**
+		 * Method untuk set pause
+		 */
 		public void pause() {
 			paused = true;
 		}
 
-		//Method untuk lanjutkan
+		/**
+		 * Method untuk melanjutkan resume
+		 */
 		public void resume() {
 			synchronized (pauseLock) {
 				paused = false;
@@ -495,14 +527,14 @@ public class GUI extends JFrame {
 			}
 		}
 
-		//Method untuk berhentikan
-		public void stop(){
+		//Method untuk berhentikan jalan program
+		public void stop() {
 			running = false;
 			resume();
 		}
 
 		//Buat anak dari node, bandingkan dengan daftar lain untuk cari tahu unik atau tidak
-		public void createChildNodes(NumberPuzzle currentState, NumberBoardList childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
+		public void createChildNodes(NumberPuzzle currentState, PriorityQueue<NumberPuzzle> childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
 			NumberPuzzle down = new NumberPuzzle(currentState);
 			down.down();
 			NumberPuzzle right = new NumberPuzzle(currentState);
@@ -512,21 +544,21 @@ public class GUI extends JFrame {
 			NumberPuzzle left = new NumberPuzzle(currentState);
 			left.left();
 			if (isNewNode(down, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(down);
+				childNodes.add(down);
 			}
 			if (isNewNode(right, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(right);
+				childNodes.add(right);
 			}
 			if (isNewNode(up, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(up);
+				childNodes.add(up);
 			}
 			if (isNewNode(left, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(left);
+				childNodes.add(left);
 			}
 		}
 
 		//Buat anak dari node, bandingkan dengan daftar untuk cari tahu unik atau tidak. Masukkan yang unik dan nilainya lebih kecil daripada node parent
-		public void createChildNodesScored(NumberPuzzle currentState, NumberPuzzle goalState, NumberBoardList childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
+		public void createChildNodesScored(NumberPuzzle currentState, NumberPuzzle goalState, PriorityQueue<NumberPuzzle> childNodes, NumberBoardList pendingNodes, NumberBoardList deadEndNodes) {
 			@SuppressWarnings("DuplicatedCode") NumberPuzzle down = new NumberPuzzle(currentState);
 			down.down();
 			down.score(goalState);
@@ -540,16 +572,16 @@ public class GUI extends JFrame {
 			left.left();
 			left.score(goalState);
 			if (down.getScore() <= currentState.getScore() && isNewNode(down, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(down);
+				childNodes.add(down);
 			}
 			if (right.getScore() <= currentState.getScore() && isNewNode(right, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(right);
+				childNodes.add(right);
 			}
 			if (up.getScore() <= currentState.getScore() && isNewNode(up, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(up);
+				childNodes.add(up);
 			}
 			if (left.getScore() <= currentState.getScore() && isNewNode(left, pendingNodes, deadEndNodes)) {
-				childNodes.addFirst(left);
+				childNodes.add(left);
 			}
 		}
 
@@ -596,6 +628,17 @@ public class GUI extends JFrame {
 			x.deleteCharAt(x.length() - 1);
 			x.deleteCharAt(x.length() - 1);
 			return x.toString();
+		}
+
+		public String printBoardList(PriorityQueue<NumberPuzzle> list) {
+			StringBuilder puzzle = new StringBuilder();
+			for (NumberPuzzle numberPuzzle : list) {
+				puzzle.append(printBoard(numberPuzzle));
+				puzzle.append("\n\n");
+			}
+			puzzle.deleteCharAt(puzzle.length() - 1);
+			puzzle.deleteCharAt(puzzle.length() - 1);
+			return puzzle.toString();
 		}
 
 		public String printBoard(NumberPuzzle numberPuzzle) {
